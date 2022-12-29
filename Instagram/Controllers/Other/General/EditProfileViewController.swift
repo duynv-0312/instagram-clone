@@ -85,7 +85,8 @@ final class EditProfileViewController: UIViewController,UITableViewDataSource {
         profilePhotoButton.layer.masksToBounds = true
         profilePhotoButton.layer.cornerRadius = size/2.0
         profilePhotoButton.tintColor = .label
-        profilePhotoButton.addTarget(self, action: #selector(didTapProfilePhotoButton),
+        profilePhotoButton.addTarget(self,
+                                     action: #selector(didTapProfilePhotoButton),
                                      for: .touchUpInside)
         profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"),
                                               for: .normal)
