@@ -8,9 +8,11 @@
 import UIKit
 
 protocol FormTableViewCellDelegate:AnyObject {
-    func formTableViewCell(_ cell: FormTableViewCell,didUpdateField updateModel: EditProfileFormModel)
+    func formTableViewCell(_ cell: FormTableViewCell,
+                           didUpdateField updateModel: EditProfileFormModel)
     
 }
+
 class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     static let identifier = "FormTableViewCell"
@@ -33,7 +35,8 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         return field
     }()
     
-    override init(style: UITableViewCell.CellStyle,reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle,
+                  reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         clipsToBounds = true
         contentView.addSubview(formLabel)
@@ -54,6 +57,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         field.text = model.value
         
     }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         formLabel.text = nil
@@ -76,13 +80,13 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
                              height: contentView.height)
     }
      // - Field
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         model?.value = textField.text
         guard let model = model else {
             return true
         }
-        delegate?.formTableViewCell(self, didUpdateField: model)
+        delegate?.formTableViewCell(self,
+                                    didUpdateField: model)
         textField.resignFirstResponder()
         return true
     }

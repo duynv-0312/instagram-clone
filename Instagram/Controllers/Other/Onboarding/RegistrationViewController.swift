@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController {
     
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
@@ -28,6 +28,7 @@ class RegistrationViewController: UIViewController {
         field.backgroundColor = .secondarySystemBackground
         return field
     }()
+    
     private let emailField: UITextField = {
         let field = UITextField()
         field.placeholder = "Email ..."
@@ -69,20 +70,9 @@ class RegistrationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerButton.addTarget(self,
-                                 action: #selector(didTapRegister),
-                                 for: .touchUpInside)
-        usernameField.delegate = self
-        emailField.delegate = self
-        passwordField.delegate = self
-        
-        view.addSubview(usernameField)
-        view.addSubview(emailField)
-        view.addSubview(passwordField)
-        view.addSubview(registerButton)
-        view.backgroundColor = .systemBackground
-
+        configView()
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -104,7 +94,24 @@ class RegistrationViewController: UIViewController {
                                      width: view.width - 40,
                                      height: 52)
     }
-    @objc private func didTapRegister() {
+    
+    private func configView() {
+        registerButton.addTarget(self,
+                                 action: #selector(didTapRegister),
+                                 for: .touchUpInside)
+        usernameField.delegate = self
+        emailField.delegate = self
+        passwordField.delegate = self
+        
+        view.addSubview(usernameField)
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(registerButton)
+        view.backgroundColor = .systemBackground
+    }
+    
+    @objc
+    private func didTapRegister() {
         emailField.resignFirstResponder()
         usernameField.resignFirstResponder()
         passwordField.resignFirstResponder()
@@ -113,7 +120,7 @@ class RegistrationViewController: UIViewController {
                 let username = usernameField.text, !username.isEmpty else {
             return
             
-        }
+    }
         AuthManager.shared.registerNewUser(username: username, email: email, password: password) { registered in
             DispatchQueue.main.async {
                 if registered {
@@ -125,11 +132,11 @@ class RegistrationViewController: UIViewController {
                 }
             }
         }
-                
-        
+       
     }
     
 }
+
 extension RegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == usernameField {

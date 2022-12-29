@@ -9,7 +9,7 @@
 import SafariServices
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
     }
@@ -55,7 +55,8 @@ class LoginViewController: UIViewController {
     
     private let termsButton: UIButton = {
         let button  = UIButton()
-        button.setTitle("Term of Servicd", for: .normal)
+        button.setTitle("Term of Servicd",
+                        for: .normal)
         button.setTitleColor(.secondaryLabel,
                              for: .normal)
         return button
@@ -63,7 +64,8 @@ class LoginViewController: UIViewController {
     
     private let privacyButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Privacy Policy ", for: .normal)
+        button.setTitle("Privacy Policy ",
+                        for: .normal)
         button.setTitleColor(.secondaryLabel,
                              for: .normal)
         return button
@@ -72,7 +74,8 @@ class LoginViewController: UIViewController {
     private let createAccountButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(.label, for: .normal)
-        button.setTitle("New User? Create an Account", for: .normal)
+        button.setTitle("New User? Create an Account",
+                        for: .normal)
         return button
     }()
     
@@ -99,60 +102,48 @@ class LoginViewController: UIViewController {
         privacyButton.addTarget(self,
                               action: #selector(didTapPrivacyButton),
                               for: .touchUpInside)
-        
         usernameEmailField.delegate = self
         passwordField.delegate = self
-        
-        
         addSubviews()
-        
         view.backgroundColor = .systemBackground
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         headerView.frame = CGRect(x: 0,
                                   y: view.safeAreaInsets.top,
                                   width: view.width,
                                   height: view.height/3.0
         )
-        
         usernameEmailField.frame = CGRect(x: 25,
                                           y: headerView.bottom + 40,
                                           width: view.width - 50,
                                           height: 52.0
         )
-        
         passwordField.frame = CGRect(x: 25,
                                      y: usernameEmailField.bottom + 10,
                                      width: view.width - 50,
                                      height: 52.0
         )
-        
         loginButton.frame = CGRect(x: 25,
                                    y: passwordField.bottom + 10,
                                    width: view.width - 50,
                                    height: 52.0
         )
-        
         createAccountButton.frame = CGRect(x: 25,
                                            y: loginButton.bottom + 10,
                                            width: view.width - 50,
                                            height: 52.0
         )
-        
         termsButton.frame = CGRect(x: 10,
                                    y: view.height - view.safeAreaInsets.bottom - 100,
                                    width: view.width - 20,
                                    height: 50
         )
-        
         privacyButton.frame = CGRect(x: 10,
                                      y: view.height - view.safeAreaInsets.bottom - 50,
                                      width: view.width - 20,
                                      height: 50)
-        
         configureHeaderView()
         
     }
@@ -184,7 +175,9 @@ class LoginViewController: UIViewController {
         view.addSubview(createAccountButton)
         view.addSubview(headerView )
     }
-    @objc private func didTapLoginButton(){
+    
+    @objc
+    private func didTapLoginButton() {
         passwordField.resignFirstResponder()
         usernameEmailField.resignFirstResponder()
         
@@ -196,11 +189,10 @@ class LoginViewController: UIViewController {
         var username: String?
         var email: String?
          
-        if usernameEmail.contains("@"), usernameEmail.contains("."){
+        if usernameEmail.contains("@"), usernameEmail.contains(".") {
             //email
             email = usernameEmail
-        }
-        else {
+        } else {
             // username
             username = usernameEmail
         }
@@ -212,12 +204,17 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 if success {
                     //user logged in
-                    self.dismiss(animated: true,completion: nil)
+                    self.dismiss(animated: true,
+                                 completion: nil)
                     }
                 else {
                     //error occured
-                    let alert = UIAlertController(title: "Log In Error", message: "We were unable to log you in", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    let alert = UIAlertController(title: "Log In Error",
+                                                  message: "We were unable to log you in",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss",
+                                                  style: .cancel,
+                                                  handler: nil))
                     self.present(alert, animated: true)
                     
                 }
@@ -225,38 +222,45 @@ class LoginViewController: UIViewController {
             
             if success {
                 //user logged in
-                self.dismiss(animated: true,completion: nil)
+                self.dismiss(animated: true, completion: nil)
             } else {
                 //error occured
-                let alert = UIAlertController(title: "Log In Error", message: "We were unable to log you in", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                let alert = UIAlertController(title: "Log In Error",
+                                              message: "We were unable to log you in",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss",
+                                              style: .cancel,
+                                              handler: nil))
                 self.present(alert, animated: true)
                 
             }
         }
     }
     
-    @objc private func didTapTermButton(){
+    @objc
+    private func didTapTermButton() {
         
         guard let url = URL(string: "https://help.instagram.com/581066165581870") else {
             return
         }
         let vc = SFSafariViewController(url: url)
-        present(vc, animated: true )
+        present(vc, animated: true)
     }
     
-    @objc private func didTapPrivacyButton(){
+    @objc
+    private func didTapPrivacyButton() {
         guard let url = URL(string: "https://help.instagram.com/155833707900388") else {
             return
         }
         let vc = SFSafariViewController(url: url)
-        present(vc, animated: true )
+        present(vc, animated: true)
     }
     
-    @objc private func didTapCreateAccountButton(){
+    @objc
+    private func didTapCreateAccountButton(){
         let vc = RegistrationViewController()
         vc.title = "Create A ccount"
-        present(UINavigationController(rootViewController: vc ), animated: true )
+        present(UINavigationController(rootViewController: vc ), animated: true)
     }
 }
 
@@ -264,8 +268,7 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == usernameEmailField {
             passwordField.becomeFirstResponder()
-        }
-        else if textField == passwordField {
+        } else if textField == passwordField {
             didTapLoginButton()
         }
         return true
