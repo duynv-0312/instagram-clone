@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IGFeedPostHeaderTableViewCell: UITableViewCell {
+final class IGFeedPostHeaderTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -13,7 +13,7 @@ protocol FormTableViewCellDelegate:AnyObject {
     
 }
 
-class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
+final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     static let identifier = "FormTableViewCell"
     

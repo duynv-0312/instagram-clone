@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IGPostGeneralTableViewCell: UITableViewCell {
+final class IGPostGeneralTableViewCell: UITableViewCell {
 
   
 }

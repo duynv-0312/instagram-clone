@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class NotificationsViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -29,6 +29,9 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+}
+
+extension NotificationsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
@@ -38,7 +41,4 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         return cell
     }
-    
-    
-    
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IGFeedPostActionTableViewCell: UITableViewCell {
+final class IGFeedPostActionTableViewCell: UITableViewCell {
 
     
 }
